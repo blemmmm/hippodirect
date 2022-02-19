@@ -50,12 +50,11 @@ app.get('/*', async (request, reply) => {
 });
 
 const searchParameters = {
-  'q': 'harry potter',
-  'query_by': 'title',
-  'sort_by': 'ratings_count:desc',
+  'q': 'samsung',
+  'query_by': 'name',
 };
 
-client.collections('books')
+client.collections('products')
   .documents()
   .search(searchParameters)
   .then(function (searchResults) {
