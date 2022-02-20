@@ -1,5 +1,4 @@
 const Typesense = require('typesense');
-const fs = require('fs/promises');
 const products = require('./ecommerce.json');
 
 const client = new Typesense.Client({
@@ -38,29 +37,6 @@ const productsSchema = {
       facet: true,
     },
     {
-      name: 'categories.lvl0',
-      type: 'string[]',
-      facet: true,
-    },
-    {
-      name: 'categories.lvl1',
-      type: 'string[]',
-      facet: true,
-      optional: true,
-    },
-    {
-      name: 'categories.lvl2',
-      type: 'string[]',
-      facet: true,
-      optional: true,
-    },
-    {
-      name: 'categories.lvl3',
-      type: 'string[]',
-      facet: true,
-      optional: true,
-    },
-    {
       name: 'price',
       type: 'float',
       facet: true,
@@ -75,16 +51,6 @@ const productsSchema = {
       type: 'int32',
       facet: false,
     },
-    {
-      name: 'free_shipping',
-      type: 'bool',
-      facet: true,
-    },
-    {
-      name: 'rating',
-      type: 'int32',
-      facet: true,
-    },
   ],
   default_sorting_field: 'popularity',
 };
@@ -96,8 +62,9 @@ process.nextTick(async () => {
   try {
     const collection = await client.collections('products').retrieve();
     console.log('Found existing schema');
+    console.log(collection.num_documents, products.length);
     // console.log(JSON.stringify(collection, null, 2));
-    if (collection.num_documents !== products.length) {
+    if (collection.num_documents !== products.length || collection.num_documents === products.length) {
       console.log('Deleting existing schema');
       await client.collections('products').delete();
     }
@@ -110,8 +77,7 @@ process.nextTick(async () => {
     await client.collections().create(productsSchema);
     console.log(JSON.stringify(productsSchema, null, 2));
     console.log('Adding records... ');
-    const productsInJson = await fs.readFile('./data/ecommerce.json');
-    const data = await client.collections('products').documents().import(productsInJson);
+    const data = await client.collections('products').documents().import(products);
     console.log(data);
     console.log('Done indexing.');
 

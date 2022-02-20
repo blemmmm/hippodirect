@@ -1,6 +1,8 @@
 const fastify = require('fastify').default;
 const fastify_static = require('fastify-static');
 const path = require('path');
+const fs = require('fs/promises');
+
 
 const app = fastify({ logger: true });
 
@@ -49,17 +51,25 @@ app.get('/*', async (request, reply) => {
     .send(html);
 });
 
-const searchParameters = {
-  'q': 'samsung',
-  'query_by': 'name',
-};
+app.get('/products', async (request, reply) => {
+  const products = await fs.readFile('./data/ecommerce.json');
+  return reply
+    .status(200)
+    .header('Content-Type', 'application/json')
+    .send(products);
+});
 
-client.collections('products')
-  .documents()
-  .search(searchParameters)
-  .then(function (searchResults) {
-    console.log(JSON.stringify(searchResults, null, 2));
-  });
+// const searchParameters = {
+//   'q': 'samsung',
+//   'query_by': 'name',
+// };
+
+// client.collections('products')
+//   .documents()
+//   .search(searchParameters)
+//   .then(function (searchResults) {
+//     console.log(JSON.stringify(searchResults, null, 2));
+//   });
 
 process.nextTick(async () => {
   try {

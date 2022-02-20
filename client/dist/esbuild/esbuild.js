@@ -20,6 +20,26 @@
   var __toESM = (module, isNodeMode) => {
     return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", !isNodeMode && module && module.__esModule ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
   };
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
 
   // node_modules/object-assign/index.js
   var require_object_assign = __commonJS({
@@ -1044,7 +1064,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState(initialState) {
+          function useState2(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1056,7 +1076,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect(create, deps) {
+          function useEffect2(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1626,13 +1646,13 @@
           exports.useCallback = useCallback;
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
-          exports.useEffect = useEffect;
+          exports.useEffect = useEffect2;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState;
+          exports.useState = useState2;
           exports.version = ReactVersion;
         })();
       }
@@ -20429,7 +20449,29 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   // client/src/components/index.jsx
   var import_react = __toESM(require_react());
   function Index() {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h1", null, "asd"));
+    const [products, set_products] = (0, import_react.useState)(null);
+    const getProducts = () => __async(this, null, function* () {
+      const response = yield fetch("/products", {
+        method: "GET"
+      });
+      const data = yield response.json();
+      set_products(data);
+    });
+    (0, import_react.useEffect)(() => {
+      if (!products) {
+        getProducts();
+      }
+    }, [products]);
+    const renderProducts = () => {
+      if (products instanceof Object) {
+        products.map((item, index) => {
+          /* @__PURE__ */ import_react.default.createElement("h1", {
+            key: index
+          }, item.name);
+        });
+      }
+    };
+    return /* @__PURE__ */ import_react.default.createElement("div", null, renderProducts());
   }
   var components_default = Index;
 
