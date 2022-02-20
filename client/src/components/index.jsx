@@ -1,37 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import Pagination from './pagination';
 
-function Index () {
-  const [products, set_products] = useState(null);
-  const getProducts = async () => {
-    const response = await fetch('/products', {
-      method: 'GET',
-    });
-
-    const data = await response.json();
-    set_products(data);
-  };
-  useEffect(() => {
-    if (!products) {
-      getProducts();
+function Index (props) {
+  const { products } = props;
+  const render_products = () => {
+    if (products instanceof Array) {
+      return products.map((item, index) => (
+        <div key={`products-${index}`}
+          className="flex flex-col border border-gray-300 w-[250px] h-[550px] box-content	p-4"
+        >
+          <img src={item.image} alt="product-image" className="h-52 w-52 object-scale-down mx-auto" />
+          <h1 className="text-sm text-gray-600 my-4">{item.brand}</h1>
+          <h1 className="font-bold">{item.name}</h1>
+          <p className="text-xs text-gray-600 my-4">{item.description}</p>
+          <h1 className="font-semibold">{`$${item.price}`}</h1>
+        </div>
+      ));
     }
-  }, [products]);
-
-  const renderProducts = () => {
-    if (products instanceof Object) {
-      products.map((item, index) => {
-        <h1 key={index}>{item.name}</h1>;
-      });
-    }
+    return null;
   };
-
-
-
-
 
   return (
-    <div>
-      {renderProducts()}
+    <div className="container mx-auto py-6">
+      {products instanceof Array ? <Pagination /> : null}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
+        { render_products() }
+      </div>
+
     </div>
+
   );
 }
 

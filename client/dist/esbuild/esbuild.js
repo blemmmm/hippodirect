@@ -1064,7 +1064,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState2(initialState) {
+          function useState5(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1076,7 +1076,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect2(create, deps) {
+          function useEffect5(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1646,13 +1646,13 @@
           exports.useCallback = useCallback;
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
-          exports.useEffect = useEffect2;
+          exports.useEffect = useEffect5;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState2;
+          exports.useState = useState5;
           exports.version = ReactVersion;
         })();
       }
@@ -2460,11 +2460,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React4 = require_react();
+          var React6 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2496,7 +2496,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React4) {
+          if (!React6) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3712,7 +3712,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React4.Children.forEach(children, function(child) {
+            React6.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3723,7 +3723,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React4.Children.forEach(props.children, function(child) {
+                React6.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -10916,7 +10916,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React4.Component().refs;
+          var emptyRefsObject = new React6.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -20440,49 +20440,164 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // client/src/esbuild.jsx
-  var import_react3 = __toESM(require_react());
+  var import_react5 = __toESM(require_react());
   var import_react_dom = __toESM(require_react_dom());
 
   // client/src/App.jsx
-  var import_react2 = __toESM(require_react());
+  var import_react4 = __toESM(require_react());
 
   // client/src/components/index.jsx
+  var import_react2 = __toESM(require_react());
+
+  // client/src/components/pagination.jsx
   var import_react = __toESM(require_react());
-  function Index() {
-    const [products, set_products] = (0, import_react.useState)(null);
-    const getProducts = () => __async(this, null, function* () {
+  function Pagination(props) {
+    const { item_per_page, total_items, paginate } = props;
+    const page_numbers = [];
+    for (let i = 1; i <= Math.ceil(total_items / item_per_page); i++) {
+      page_numbers.push(i);
+    }
+    console.log(page_numbers);
+    return /* @__PURE__ */ import_react.default.createElement("nav", {
+      className: "relative mx-auto px-6 py-2"
+    }, /* @__PURE__ */ import_react.default.createElement("ul", {
+      className: "flex flex-row justify-end"
+    }, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", {
+      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l-lg focus:shadow-outline hover:bg-indigo-100"
+    }, /* @__PURE__ */ import_react.default.createElement("svg", {
+      className: "w-4 h-4 fill-current",
+      viewBox: "0 0 20 20"
+    }, /* @__PURE__ */ import_react.default.createElement("path", {
+      d: "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+      clipRule: "evenodd",
+      fillRule: "evenodd"
+    })))), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", {
+      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-r-lg focus:shadow-outline hover:bg-indigo-100"
+    }, /* @__PURE__ */ import_react.default.createElement("svg", {
+      className: "w-4 h-4 fill-current",
+      viewBox: "0 0 20 20"
+    }, /* @__PURE__ */ import_react.default.createElement("path", {
+      d: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+      clipRule: "evenodd",
+      fillRule: "evenodd"
+    }))))));
+  }
+  var pagination_default = Pagination;
+
+  // client/src/components/index.jsx
+  function Index(props) {
+    const { products } = props;
+    const render_products = () => {
+      if (products instanceof Array) {
+        return products.map((item, index) => /* @__PURE__ */ import_react2.default.createElement("div", {
+          key: `products-${index}`,
+          className: "flex flex-col border border-gray-300 w-[250px] h-[550px] box-content	p-4"
+        }, /* @__PURE__ */ import_react2.default.createElement("img", {
+          src: item.image,
+          alt: "product-image",
+          className: "h-52 w-52 object-scale-down mx-auto"
+        }), /* @__PURE__ */ import_react2.default.createElement("h1", {
+          className: "text-sm text-gray-600 my-4"
+        }, item.brand), /* @__PURE__ */ import_react2.default.createElement("h1", {
+          className: "font-bold"
+        }, item.name), /* @__PURE__ */ import_react2.default.createElement("p", {
+          className: "text-xs text-gray-600 my-4"
+        }, item.description), /* @__PURE__ */ import_react2.default.createElement("h1", {
+          className: "font-semibold"
+        }, `$${item.price}`)));
+      }
+      return null;
+    };
+    return /* @__PURE__ */ import_react2.default.createElement("div", {
+      className: "container mx-auto py-6"
+    }, products instanceof Array ? /* @__PURE__ */ import_react2.default.createElement(pagination_default, null) : null, /* @__PURE__ */ import_react2.default.createElement("div", {
+      className: "grid grid-cols-1 md:grid-cols-4 gap-6 px-6"
+    }, render_products()));
+  }
+  var components_default = Index;
+
+  // client/src/components/search.jsx
+  var import_react3 = __toESM(require_react());
+  var controller = null;
+  function Search(props) {
+    const [query, set_query] = (0, import_react3.useState)("");
+    const [hits, set_hits] = (0, import_react3.useState)([]);
+    (0, import_react3.useEffect)(() => {
+      (() => __async(this, null, function* () {
+        try {
+          if (controller instanceof Object) {
+            controller.abort();
+            controller = null;
+          }
+          if (query === "") {
+            set_hits([]);
+            return;
+          }
+          controller = new AbortController();
+          const start = Date.now();
+        } catch (e) {
+          if (e.name === "AbortError") {
+            return;
+          }
+          console.error(`${e.name}: ${e.message}`);
+        }
+      }))();
+    }, [query]);
+    return /* @__PURE__ */ import_react3.default.createElement("div", {
+      className: "container mx-auto p-6 relative text-gray-700"
+    }, /* @__PURE__ */ import_react3.default.createElement("input", {
+      className: "w-full h-10 pl-8 pr-3 text-base placeholder-gray-600 border rounded focus:outline-none",
+      type: "text",
+      placeholder: "Search",
+      value: query,
+      onChange: (e) => set_query(e.target.value)
+    }), /* @__PURE__ */ import_react3.default.createElement("div", {
+      className: "absolute inset-y-0 left-0 flex items-center px-8 pointer-events-none"
+    }, /* @__PURE__ */ import_react3.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      "aria-hidden": "true",
+      role: "img",
+      width: "1em",
+      height: "1em",
+      preserveAspectRatio: "xMidYMid meet",
+      viewBox: "0 0 1664 1664"
+    }, /* @__PURE__ */ import_react3.default.createElement("path", {
+      fill: "#9ca3af",
+      d: "M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"
+    }))));
+  }
+  var search_default = Search;
+
+  // client/src/App.jsx
+  function App() {
+    const [products, set_products] = (0, import_react4.useState)(null);
+    const get_products = () => __async(this, null, function* () {
       const response = yield fetch("/products", {
         method: "GET"
       });
       const data = yield response.json();
       set_products(data);
     });
-    (0, import_react.useEffect)(() => {
+    (0, import_react4.useEffect)(() => {
       if (!products) {
-        getProducts();
+        get_products();
       }
     }, [products]);
-    const renderProducts = () => {
-      if (products instanceof Object) {
-        products.map((item, index) => {
-          /* @__PURE__ */ import_react.default.createElement("h1", {
-            key: index
-          }, item.name);
-        });
-      }
-    };
-    return /* @__PURE__ */ import_react.default.createElement("div", null, renderProducts());
-  }
-  var components_default = Index;
-
-  // client/src/App.jsx
-  function App() {
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement(components_default, null));
+    const [current_page, set_current_page] = (0, import_react4.useState)(1);
+    const [item_per_page] = (0, import_react4.useState)(20);
+    const paginate = (page_number) => set_current_page(page_number);
+    return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement(search_default, null), /* @__PURE__ */ import_react4.default.createElement(components_default, {
+      products
+    }), products instanceof Array ? /* @__PURE__ */ import_react4.default.createElement(pagination_default, {
+      item_per_page,
+      total_items: products.length,
+      paginate
+    }) : null);
   }
   var App_default = App;
 
   // client/src/esbuild.jsx
-  import_react_dom.default.render(/* @__PURE__ */ import_react3.default.createElement(App_default, null), document.getElementById("root"));
+  import_react_dom.default.render(/* @__PURE__ */ import_react5.default.createElement(App_default, null), document.getElementById("root"));
 })();
 /*
 object-assign
