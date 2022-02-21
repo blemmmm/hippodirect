@@ -20454,33 +20454,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function Pagination(props) {
     const { item_per_page, total_items, paginate } = props;
     const page_numbers = [];
-    for (let i = 1; i <= Math.ceil(total_items / item_per_page); i++) {
-      page_numbers.push(i);
-    }
-    console.log(page_numbers);
     return /* @__PURE__ */ import_react.default.createElement("nav", {
       className: "relative mx-auto px-6 py-2"
     }, /* @__PURE__ */ import_react.default.createElement("ul", {
       className: "flex flex-row justify-end"
-    }, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", {
-      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l-lg focus:shadow-outline hover:bg-indigo-100"
-    }, /* @__PURE__ */ import_react.default.createElement("svg", {
-      className: "w-4 h-4 fill-current",
-      viewBox: "0 0 20 20"
-    }, /* @__PURE__ */ import_react.default.createElement("path", {
-      d: "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
-      clipRule: "evenodd",
-      fillRule: "evenodd"
-    })))), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", {
-      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-r-lg focus:shadow-outline hover:bg-indigo-100"
-    }, /* @__PURE__ */ import_react.default.createElement("svg", {
-      className: "w-4 h-4 fill-current",
-      viewBox: "0 0 20 20"
-    }, /* @__PURE__ */ import_react.default.createElement("path", {
-      d: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
-      clipRule: "evenodd",
-      fillRule: "evenodd"
-    }))))));
+    }));
   }
   var pagination_default = Pagination;
 
@@ -20512,7 +20490,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       className: "container mx-auto py-6"
     }, products instanceof Array ? /* @__PURE__ */ import_react2.default.createElement(pagination_default, null) : null, /* @__PURE__ */ import_react2.default.createElement("div", {
       className: "grid grid-cols-1 md:grid-cols-4 gap-6 px-6"
-    }, render_products()));
+    }));
   }
   var components_default = Index;
 
@@ -20535,6 +20513,25 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
           controller = new AbortController();
           const start = Date.now();
+          const query_data = {
+            q: query,
+            query_by: "name,brand",
+            per_page: "20",
+            "x-typesense-api-key": "test1234"
+          };
+          const query_string = new URLSearchParams(query_data).toString();
+          const response = yield fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`, {
+            signal: controller.signal
+          });
+          controller = null;
+          if (response.status === 200) {
+            const json = yield response.json();
+            if (json instanceof Object) {
+              if (json.hits instanceof Array) {
+                set_hits(json.hits);
+              }
+            }
+          }
         } catch (e) {
           if (e.name === "AbortError") {
             return;
@@ -20543,7 +20540,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }))();
     }, [query]);
-    return /* @__PURE__ */ import_react3.default.createElement("div", {
+    console.log(hits);
+    return /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", {
       className: "container mx-auto p-6 relative text-gray-700"
     }, /* @__PURE__ */ import_react3.default.createElement("input", {
       className: "w-full h-10 pl-8 pr-3 text-base placeholder-gray-600 border rounded focus:outline-none",
@@ -20564,7 +20562,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }, /* @__PURE__ */ import_react3.default.createElement("path", {
       fill: "#9ca3af",
       d: "M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"
-    }))));
+    })))), hits instanceof Array && hits.map((item, index) => /* @__PURE__ */ import_react3.default.createElement("div", {
+      key: `products-${index}`
+    }, /* @__PURE__ */ import_react3.default.createElement("h1", null, `${item.document.name}, --${item.document.brand}`))));
   }
   var search_default = Search;
 
@@ -20588,11 +20588,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     const paginate = (page_number) => set_current_page(page_number);
     return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement(search_default, null), /* @__PURE__ */ import_react4.default.createElement(components_default, {
       products
-    }), products instanceof Array ? /* @__PURE__ */ import_react4.default.createElement(pagination_default, {
-      item_per_page,
-      total_items: products.length,
-      paginate
-    }) : null);
+    }));
   }
   var App_default = App;
 

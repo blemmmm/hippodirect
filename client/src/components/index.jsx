@@ -24,7 +24,7 @@ function Index (props) {
     <div className="container mx-auto py-6">
       {products instanceof Array ? <Pagination /> : null}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
-        { render_products() }
+        {/* { render_products() } */}
       </div>
 
     </div>

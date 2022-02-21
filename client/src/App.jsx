@@ -33,11 +33,11 @@ function App () {
   return (
     <div>
       <Search />
-      <Index products={products}/>
-      {products instanceof Array ? <Pagination
+      <Index products={products} />
+      {/* {products instanceof Array ? <Pagination
         item_per_page={item_per_page}
         total_items={products.length}
-        paginate={paginate}/> : null}
+        paginate={paginate}/> : null} */}
     </div>
   );
 
