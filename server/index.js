@@ -1,22 +1,22 @@
 const fastify = require('fastify').default;
 const fastify_static = require('fastify-static');
 const path = require('path');
-const fs = require('fs/promises');
+// const fs = require('fs/promises');
 
 
 const app = fastify({ logger: true });
 
-const Typesense = require('typesense');
+// const Typesense = require('typesense');
 
-const client = new Typesense.Client({
-  'nodes': [{
-    'host': 'localhost', // For Typesense Cloud use xxx.a1.typesense.net
-    'port': '8108', // For Typesense Cloud use 443
-    'protocol': 'http', // For Typesense Cloud use https
-  }],
-  'apiKey': 'test1234',
-  'connectionTimeoutSeconds': 2,
-});
+// const client = new Typesense.Client({
+//   'nodes': [{
+//     'host': 'localhost', // For Typesense Cloud use xxx.a1.typesense.net
+//     'port': '8108', // For Typesense Cloud use 443
+//     'protocol': 'http', // For Typesense Cloud use https
+//   }],
+//   'apiKey': 'test1234',
+//   'connectionTimeoutSeconds': 2,
+// });
 
 const html = `
   <!DOCTYPE html>
@@ -51,13 +51,13 @@ app.get('/*', async (request, reply) => {
     .send(html);
 });
 
-app.get('/products', async (request, reply) => {
-  const products = await fs.readFile('./data/ecommerce.json');
-  return reply
-    .status(200)
-    .header('Content-Type', 'application/json')
-    .send(products);
-});
+// app.get('/products', async (request, reply) => {
+//   const products = await fs.readFile('./data/ecommerce.json');
+//   return reply
+//     .status(200)
+//     .header('Content-Type', 'application/json')
+//     .send(products);
+// });
 
 // const searchParameters = {
 //   'q': 'samsung',

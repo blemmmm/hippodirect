@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import Pagination from './pagination';
 
 let controller = null;
 
-function Search (props) {
+
+function Search () {
   const [query, set_query] = useState('');
   const [hits, set_hits] = useState([]);
+  const [all_hits, set_all_hits] = useState([]);
+  const [found, set_found] = useState(0);
+
 
   useEffect(() => {
     (async () => {
@@ -18,11 +23,10 @@ function Search (props) {
           return;
         }
         controller = new AbortController();
-        const start = Date.now();
         const query_data = {
           q: query,
           query_by: 'name,brand',
-          per_page: '20',
+          per_page: '5',
           'x-typesense-api-key': 'test1234',
         };
         const query_string = new URLSearchParams(query_data).toString();
@@ -46,21 +50,66 @@ function Search (props) {
       }
     })();
   }, [query]);
-  console.log(hits);
+
+  const search_all = async () => {
+    const query_data = {
+      q: query,
+      query_by: 'name,brand',
+      page: '1',
+      per_page: '12',
+      'x-typesense-api-key': 'test1234',
+    };
+    const query_string = new URLSearchParams(query_data).toString();
+    const response = await fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
+    if (response.status === 200) {
+      const json = await response.json();
+      console.log(json);
+      if (json instanceof Object) {
+        set_found(json.found);
+        if (json.hits instanceof Array) {
+          set_all_hits(json.hits);
+          set_hits([]);
+        }
+      }
+    }
+  };
+  console.log(all_hits);
   return (
-    <div>
+    <div className="container mx-auto">
       <div className="container mx-auto p-6 relative text-gray-700">
         <input className="w-full h-10 pl-8 pr-3 text-base placeholder-gray-600 border rounded focus:outline-none" type="text" placeholder="Search" value={query} onChange={(e) => set_query(e.target.value)}/>
         <div className="absolute inset-y-0 left-0 flex items-center px-8 pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1664 1664"><path fill="#9ca3af" d="M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"/></svg>
         </div>
       </div>
-      { hits instanceof Array && hits.map((item, index) => (
-        <div key={`products-${index}`}
-          className="">
-          <h1>{`${item.document.name}, --${item.document.brand}`}</h1>
+      <div className="bg-white drop-shadow-lg container mx-auto w-[1230px] absolute top-[65px] left-[68px]">
+        { hits.length > 0 && hits.map((item, index) => (
+          <div key={`products-${index}`}
+            className="flex flex-row px-4 hover:bg-slate-200">
+            <img src={item.document.image} alt="product-image" className="h-10 w-10 object-scale-down my-2" />
+            <h1 className="py-4">{item.document.name}</h1>
+          </div>
+        )) }
+        {hits.length > 0 ? (<div className="flex flex-row px-4 bg-slate-200">
+          <h1 className="mx-auto text-sm text-blue-900"><a onClick={search_all}>see more</a></h1>
+        </div>) : null}
+      </div>
+      <div className="container mx-auto left-[68px] mb-6">
+        {all_hits.length > 0 ? <Pagination found={found} query={query} set_all_hits={set_all_hits}/> : null}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
+          {all_hits.length > 0 && all_hits.map((item, index) => (
+            <div key={`products-${index}`}
+              className="flex flex-col border border-gray-300 w-[250px] h-[550px] box-content	p-4">
+              <img src={item.document.image} alt="product-image" className="h-52 w-52 object-scale-down mx-auto" />
+              <h1 className="text-sm text-gray-600 my-4">{item.document.brand}</h1>
+              <h1 className="font-bold">{item.document.name}</h1>
+              <p className="text-xs text-gray-600 my-4">{item.document.description}</p>
+              <h1 className="font-semibold">{`$${item.document.price}`}</h1>
+            </div>
+          ))}
         </div>
-      )) }
+      </div>
+
     </div>
 
   );
