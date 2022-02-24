@@ -20482,11 +20482,39 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     });
+    const prev_page = () => __async(this, null, function* () {
+      counter -= 1;
+      if (counter > 0 && counter <= quotient) {
+        console.log(counter, quotient);
+      } else if (counter === 0) {
+        counter = quotient;
+        console.log(counter, quotient);
+      }
+      const query_data = {
+        q: query,
+        query_by: "name,brand",
+        page: counter,
+        per_page: "12",
+        "x-typesense-api-key": "test1234"
+      };
+      const query_string = new URLSearchParams(query_data).toString();
+      const response = yield fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
+      if (response.status === 200) {
+        const json = yield response.json();
+        console.log(json);
+        if (json instanceof Object) {
+          if (json.hits instanceof Array) {
+            set_all_hits(json.hits);
+          }
+        }
+      }
+    });
     return /* @__PURE__ */ import_react.default.createElement("nav", {
       className: "relative mx-auto px-6 py-2"
     }, /* @__PURE__ */ import_react.default.createElement("ul", {
       className: "flex flex-row justify-end"
     }, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: prev_page,
       className: "h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l-lg focus:shadow-outline hover:bg-indigo-100"
     }, /* @__PURE__ */ import_react.default.createElement("svg", {
       className: "w-4 h-4 fill-current",
