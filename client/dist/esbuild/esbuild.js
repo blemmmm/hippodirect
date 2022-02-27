@@ -1064,7 +1064,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState2(initialState) {
+          function useState5(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1076,7 +1076,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect2(create, deps) {
+          function useEffect5(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1084,7 +1084,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback(callback, deps) {
+          function useCallback2(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1643,16 +1643,16 @@
           exports.isValidElement = isValidElement;
           exports.lazy = lazy;
           exports.memo = memo;
-          exports.useCallback = useCallback;
+          exports.useCallback = useCallback2;
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
-          exports.useEffect = useEffect2;
+          exports.useEffect = useEffect5;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState2;
+          exports.useState = useState5;
           exports.version = ReactVersion;
         })();
       }
@@ -2460,11 +2460,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React5 = require_react();
+          var React7 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2496,7 +2496,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React5) {
+          if (!React7) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3712,7 +3712,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React5.Children.forEach(children, function(child) {
+            React7.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3723,7 +3723,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React5.Children.forEach(props.children, function(child) {
+                React7.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -10916,7 +10916,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React5.Component().refs;
+          var emptyRefsObject = new React7.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -20440,20 +20440,20 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // client/src/esbuild.jsx
-  var import_react4 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
   var import_react_dom = __toESM(require_react_dom());
 
   // client/src/App.jsx
-  var import_react3 = __toESM(require_react());
+  var import_react5 = __toESM(require_react());
 
   // client/src/components/search.jsx
   var import_react2 = __toESM(require_react());
 
-  // client/src/components/pagination.jsx
+  // client/src/components/search_pagination.jsx
   var import_react = __toESM(require_react());
   var counter = 1;
-  function Pagination(props) {
-    const { found, query, set_all_hits } = props;
+  function Search_Pagination(props) {
+    const { history, found, query, set_all_hits, set_query } = props;
     const quotient = Math.ceil(found / 12);
     const next_page = () => __async(this, null, function* () {
       counter += 1;
@@ -20509,9 +20509,30 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     });
+    const back = () => {
+      history.push("/");
+      set_all_hits([]);
+      set_query("");
+    };
     return /* @__PURE__ */ import_react.default.createElement("nav", {
-      className: "relative mx-auto px-6 py-2"
+      className: "container mx-auto px-6 py-2 flex flex-row justify-between"
     }, /* @__PURE__ */ import_react.default.createElement("ul", {
+      className: "flex flex-row items-center justify-start"
+    }, /* @__PURE__ */ import_react.default.createElement("a", {
+      className: "flex flex-row items-center cursor-pointer",
+      onClick: back
+    }, /* @__PURE__ */ import_react.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      "aria-hidden": "true",
+      role: "img",
+      width: "1em",
+      height: "1em",
+      preserveAspectRatio: "xMidYMid meet",
+      viewBox: "0 0 24 24"
+    }, /* @__PURE__ */ import_react.default.createElement("path", {
+      fill: "currentColor",
+      d: "M21 11H6.414l5.293-5.293l-1.414-1.414L2.586 12l7.707 7.707l1.414-1.414L6.414 13H21z"
+    })), "Back to Home")), /* @__PURE__ */ import_react.default.createElement("ul", {
       className: "flex flex-row justify-end"
     }, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", {
       onClick: prev_page,
@@ -20535,11 +20556,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fillRule: "evenodd"
     }))))));
   }
-  var pagination_default = Pagination;
+  var search_pagination_default = Search_Pagination;
 
   // client/src/components/search.jsx
   var controller = null;
-  function Search() {
+  function Search(props) {
+    const { history, set_all_products } = props;
     const [query, set_query] = (0, import_react2.useState)("");
     const [hits, set_hits] = (0, import_react2.useState)([]);
     const [all_hits, set_all_hits] = (0, import_react2.useState)([]);
@@ -20601,6 +20623,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           if (json.hits instanceof Array) {
             set_all_hits(json.hits);
             set_hits([]);
+            history.push("/search");
           }
         }
       }
@@ -20641,17 +20664,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }), /* @__PURE__ */ import_react2.default.createElement("h1", {
       className: "py-4"
     }, item.document.name))), hits.length > 0 ? /* @__PURE__ */ import_react2.default.createElement("div", {
-      className: "flex flex-row px-4 bg-slate-200"
+      className: "flex flex-row px-4 bg-slate-200 cursor-pointer",
+      onClick: search_all
     }, /* @__PURE__ */ import_react2.default.createElement("h1", {
       className: "mx-auto text-sm text-blue-900"
-    }, /* @__PURE__ */ import_react2.default.createElement("a", {
-      onClick: search_all
-    }, "see more"))) : null), /* @__PURE__ */ import_react2.default.createElement("div", {
+    }, /* @__PURE__ */ import_react2.default.createElement("a", null, "see more"))) : null), /* @__PURE__ */ import_react2.default.createElement("div", {
       className: "container mx-auto left-[68px] mb-6"
-    }, all_hits.length > 0 ? /* @__PURE__ */ import_react2.default.createElement(pagination_default, {
+    }, all_hits.length > 0 ? /* @__PURE__ */ import_react2.default.createElement(search_pagination_default, {
+      history,
       found,
       query,
-      set_all_hits
+      set_all_hits,
+      set_query
     }) : null, /* @__PURE__ */ import_react2.default.createElement("div", {
       className: "grid grid-cols-1 md:grid-cols-4 gap-6 px-6"
     }, all_hits.length > 0 && all_hits.map((item, index) => /* @__PURE__ */ import_react2.default.createElement("div", {
@@ -20673,14 +20697,228 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   var search_default = Search;
 
+  // client/src/components/index.jsx
+  var import_react4 = __toESM(require_react());
+
+  // client/src/components/index_pagination.jsx
+  var import_react3 = __toESM(require_react());
+  var counter2 = 1;
+  function Index_Pagination(props) {
+    const { found, set_all_products } = props;
+    const quotient = Math.ceil(found / 20);
+    const next_page = () => __async(this, null, function* () {
+      counter2 += 1;
+      if (counter2 <= quotient) {
+        console.log(counter2, quotient);
+      } else {
+        counter2 = 1;
+        console.log(counter2, quotient);
+      }
+      const query_data = {
+        q: "*",
+        query_by: "name,brand",
+        page: counter2,
+        per_page: "20",
+        "sort_by": "popularity:desc",
+        "x-typesense-api-key": "test1234"
+      };
+      const query_string = new URLSearchParams(query_data).toString();
+      const response = yield fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
+      if (response.status === 200) {
+        const json = yield response.json();
+        console.log(json);
+        if (json instanceof Object) {
+          if (json.hits instanceof Array) {
+            set_all_products(json.hits);
+          }
+        }
+      }
+    });
+    const prev_page = () => __async(this, null, function* () {
+      counter2 -= 1;
+      if (counter2 > 0 && counter2 <= quotient) {
+        console.log(counter2, quotient);
+      } else if (counter2 === 0) {
+        counter2 = quotient;
+        console.log(counter2, quotient);
+      }
+      const query_data = {
+        q: "*",
+        query_by: "name,brand",
+        page: counter2,
+        per_page: "20",
+        "sort_by": "popularity:desc",
+        "x-typesense-api-key": "test1234"
+      };
+      const query_string = new URLSearchParams(query_data).toString();
+      const response = yield fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
+      if (response.status === 200) {
+        const json = yield response.json();
+        console.log(json);
+        if (json instanceof Object) {
+          if (json.hits instanceof Array) {
+            set_all_products(json.hits);
+          }
+        }
+      }
+    });
+    return /* @__PURE__ */ import_react3.default.createElement("nav", {
+      className: "container mx-auto px-6 py-2"
+    }, /* @__PURE__ */ import_react3.default.createElement("ul", {
+      className: "flex flex-row justify-end"
+    }, /* @__PURE__ */ import_react3.default.createElement("li", null, /* @__PURE__ */ import_react3.default.createElement("button", {
+      onClick: prev_page,
+      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l-lg focus:shadow-outline hover:bg-indigo-100"
+    }, /* @__PURE__ */ import_react3.default.createElement("svg", {
+      className: "w-4 h-4 fill-current",
+      viewBox: "0 0 20 20"
+    }, /* @__PURE__ */ import_react3.default.createElement("path", {
+      d: "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+      clipRule: "evenodd",
+      fillRule: "evenodd"
+    })))), /* @__PURE__ */ import_react3.default.createElement("li", null, /* @__PURE__ */ import_react3.default.createElement("button", {
+      onClick: next_page,
+      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-r-lg focus:shadow-outline hover:bg-indigo-100"
+    }, /* @__PURE__ */ import_react3.default.createElement("svg", {
+      className: "w-4 h-4 fill-current",
+      viewBox: "0 0 20 20"
+    }, /* @__PURE__ */ import_react3.default.createElement("path", {
+      d: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+      clipRule: "evenodd",
+      fillRule: "evenodd"
+    }))))));
+  }
+  var index_pagination_default = Index_Pagination;
+
+  // client/src/components/index.jsx
+  function Index(props) {
+    const { all_products, found, set_all_products } = props;
+    return /* @__PURE__ */ import_react4.default.createElement("div", {
+      className: "container mx-auto mb-6"
+    }, all_products.length > 0 ? /* @__PURE__ */ import_react4.default.createElement(index_pagination_default, {
+      found,
+      set_all_products
+    }) : null, /* @__PURE__ */ import_react4.default.createElement("div", {
+      className: "grid grid-cols-1 md:grid-cols-4 gap-6 px-6"
+    }, all_products.length > 0 && all_products.map((item, index) => /* @__PURE__ */ import_react4.default.createElement("div", {
+      key: `products-${index}`,
+      className: "flex flex-col border border-gray-300 w-[250px] h-[550px] box-content	p-4"
+    }, /* @__PURE__ */ import_react4.default.createElement("img", {
+      src: item.document.image,
+      alt: "product-image",
+      className: "h-52 w-52 object-scale-down mx-auto"
+    }), /* @__PURE__ */ import_react4.default.createElement("h1", {
+      className: "text-sm text-gray-600 my-4"
+    }, item.document.brand), /* @__PURE__ */ import_react4.default.createElement("h1", {
+      className: "font-bold"
+    }, item.document.name), /* @__PURE__ */ import_react4.default.createElement("p", {
+      className: "text-xs text-gray-600 my-4"
+    }, item.document.description), /* @__PURE__ */ import_react4.default.createElement("h1", {
+      className: "font-semibold"
+    }, `$${item.document.price}`)))));
+  }
+  var components_default = Index;
+
+  // client/src/useHistory.js
+  var { useState: useState3, useEffect: useEffect3, useCallback } = require_react();
+  var useHistory = () => {
+    const [previous_pathname, set_previous_pathname] = useState3(null);
+    const [pathname, set_pathname] = useState3(window.location.pathname);
+    const push = useCallback((next_pathname) => {
+      if (pathname !== next_pathname) {
+        window.history.pushState(null, null, next_pathname);
+        set_previous_pathname(pathname);
+        set_pathname(next_pathname);
+      }
+    }, [pathname]);
+    const replace = useCallback((next_pathname) => {
+      if (pathname !== next_pathname) {
+        window.history.replaceState(null, null, next_pathname);
+        set_previous_pathname(pathname);
+        set_pathname(next_pathname);
+      }
+    }, [pathname]);
+    useEffect3(() => {
+      const popstate_listener = () => {
+        set_previous_pathname(pathname);
+        set_pathname(window.location.pathname);
+      };
+      window.addEventListener("popstate", popstate_listener);
+      return () => {
+        window.removeEventListener("popstate", popstate_listener);
+      };
+    }, [pathname]);
+    const history = {
+      previous_pathname,
+      pathname,
+      push,
+      replace
+    };
+    return history;
+  };
+  var useHistory_default = useHistory;
+
   // client/src/App.jsx
   function App() {
-    return /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement(search_default, null));
+    const history = useHistory_default();
+    const [all_products, set_all_products] = (0, import_react5.useState)([]);
+    const [found, set_found] = (0, import_react5.useState)(0);
+    (0, import_react5.useEffect)(() => {
+      (() => __async(this, null, function* () {
+        try {
+          if (all_products.length === 0) {
+            const query_data = {
+              q: "*",
+              query_by: "name,brand",
+              per_page: "20",
+              "sort_by": "popularity:desc",
+              "x-typesense-api-key": "test1234"
+            };
+            const query_string = new URLSearchParams(query_data).toString();
+            const response = yield fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
+            if (response.status === 200) {
+              const json = yield response.json();
+              if (json instanceof Object) {
+                set_found(json.found);
+                if (json.hits instanceof Array) {
+                  set_all_products(json.hits);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.error(`${e.name}: ${e.message}`);
+        }
+      }))();
+    }, [all_products]);
+    console.log(history.pathname);
+    switch (history.pathname) {
+      case "/": {
+        if (all_products.length > 0) {
+          return /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement(search_default, {
+            history,
+            set_all_products
+          }), /* @__PURE__ */ import_react5.default.createElement(components_default, {
+            history,
+            all_products,
+            found,
+            set_all_products
+          }));
+        }
+        return null;
+      }
+      case "/search": {
+        return /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement(search_default, {
+          history,
+          set_all_products
+        }));
+      }
+    }
   }
   var App_default = App;
 
   // client/src/esbuild.jsx
-  import_react_dom.default.render(/* @__PURE__ */ import_react4.default.createElement(App_default, null), document.getElementById("root"));
+  import_react_dom.default.render(/* @__PURE__ */ import_react6.default.createElement(App_default, null), document.getElementById("root"));
 })();
 /*
 object-assign

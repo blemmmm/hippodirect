@@ -2,8 +2,8 @@ import React from 'react';
 
 let counter = 1;
 
-function Pagination (props) {
-  const { found, query, set_all_hits } = props;
+function Search_Pagination (props) {
+  const { history, found, query, set_all_hits, set_query } = props;
   const quotient = Math.ceil(found / 12);
 
   const next_page = async () => {
@@ -65,8 +65,20 @@ function Pagination (props) {
 
   };
 
+  const back = () => {
+    history.push('/');
+    set_all_hits([]);
+    set_query('');
+  };
+
   return (
-    <nav className="relative mx-auto px-6 py-2">
+    <nav className="container mx-auto px-6 py-2 flex flex-row justify-between">
+      <ul className="flex flex-row items-center justify-start">
+        <a className="flex flex-row items-center cursor-pointer" onClick={back}>
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11H6.414l5.293-5.293l-1.414-1.414L2.586 12l7.707 7.707l1.414-1.414L6.414 13H21z"/></svg>
+          Back to Home
+        </a>
+      </ul>
       <ul className="flex flex-row justify-end">
         <li><button onClick={prev_page} className="h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l-lg focus:shadow-outline hover:bg-indigo-100">
           <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" fillRule="evenodd"></path></svg></button>
@@ -79,5 +91,5 @@ function Pagination (props) {
   );
 }
 
-export default Pagination;
+export default Search_Pagination;
 

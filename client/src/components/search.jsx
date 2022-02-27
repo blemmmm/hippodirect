@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Pagination from './pagination';
+import Pagination from './search_pagination';
 
 let controller = null;
 
 
-function Search () {
+function Search (props) {
+  const { history, set_all_products } = props;
   const [query, set_query] = useState('');
   const [hits, set_hits] = useState([]);
   const [all_hits, set_all_hits] = useState([]);
@@ -69,6 +70,7 @@ function Search () {
         if (json.hits instanceof Array) {
           set_all_hits(json.hits);
           set_hits([]);
+          history.push('/search');
         }
       }
     }
@@ -90,12 +92,12 @@ function Search () {
             <h1 className="py-4">{item.document.name}</h1>
           </div>
         )) }
-        {hits.length > 0 ? (<div className="flex flex-row px-4 bg-slate-200">
-          <h1 className="mx-auto text-sm text-blue-900"><a onClick={search_all}>see more</a></h1>
+        {hits.length > 0 ? (<div className="flex flex-row px-4 bg-slate-200 cursor-pointer" onClick={search_all}>
+          <h1 className="mx-auto text-sm text-blue-900"><a>see more</a></h1>
         </div>) : null}
       </div>
       <div className="container mx-auto left-[68px] mb-6">
-        {all_hits.length > 0 ? <Pagination found={found} query={query} set_all_hits={set_all_hits}/> : null}
+        {all_hits.length > 0 ? <Pagination history={history} found={found} query={query} set_all_hits={set_all_hits} set_query={set_query}/> : null}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-6">
           {all_hits.length > 0 && all_hits.map((item, index) => (
             <div key={`products-${index}`}

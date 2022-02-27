@@ -533,6 +533,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-10 {
   width: 2.5rem;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -545,8 +548,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .items-center {
   align-items: center;
 }
+.justify-start {
+  justify-content: flex-start;
+}
 .justify-end {
   justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
 }
 .gap-6 {
   gap: 1.5rem;
@@ -623,6 +632,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pr-3 {
   padding-right: 0.75rem;
+}
+.pl-6 {
+  padding-left: 1.5rem;
 }
 .text-sm {
   font-size: 0.875rem;
