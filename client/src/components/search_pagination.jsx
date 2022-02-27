@@ -74,7 +74,7 @@ function Search_Pagination (props) {
   return (
     <nav className="container mx-auto px-6 py-2 flex flex-row justify-between">
       <ul className="flex flex-row items-center justify-start">
-        <a className="flex flex-row items-center cursor-pointer" onClick={back}>
+        <a className="flex flex-row items-center cursor-pointer text-indigo-600 font-semibold" onClick={back}>
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11H6.414l5.293-5.293l-1.414-1.414L2.586 12l7.707 7.707l1.414-1.414L6.414 13H21z"/></svg>
           Back to Home
         </a>

@@ -20519,7 +20519,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }, /* @__PURE__ */ import_react.default.createElement("ul", {
       className: "flex flex-row items-center justify-start"
     }, /* @__PURE__ */ import_react.default.createElement("a", {
-      className: "flex flex-row items-center cursor-pointer",
+      className: "flex flex-row items-center cursor-pointer text-indigo-600 font-semibold",
       onClick: back
     }, /* @__PURE__ */ import_react.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
@@ -20606,24 +20606,28 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }))();
     }, [query]);
     const search_all = () => __async(this, null, function* () {
-      const query_data = {
-        q: query,
-        query_by: "name,brand",
-        page: "1",
-        per_page: "12",
-        "x-typesense-api-key": "test1234"
-      };
-      const query_string = new URLSearchParams(query_data).toString();
-      const response = yield fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
-      if (response.status === 200) {
-        const json = yield response.json();
-        console.log(json);
-        if (json instanceof Object) {
-          set_found(json.found);
-          if (json.hits instanceof Array) {
-            set_all_hits(json.hits);
-            set_hits([]);
-            history.push("/search");
+      if (query === "") {
+        alert("Please enter a keyword or brand");
+      } else {
+        const query_data = {
+          q: query,
+          query_by: "name,brand",
+          page: "1",
+          per_page: "12",
+          "x-typesense-api-key": "test1234"
+        };
+        const query_string = new URLSearchParams(query_data).toString();
+        const response = yield fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
+        if (response.status === 200) {
+          const json = yield response.json();
+          console.log(json);
+          if (json instanceof Object) {
+            set_found(json.found);
+            if (json.hits instanceof Array) {
+              set_all_hits(json.hits);
+              set_hits([]);
+              history.push("/search");
+            }
           }
         }
       }
@@ -20632,15 +20636,23 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return /* @__PURE__ */ import_react2.default.createElement("div", {
       className: "container mx-auto"
     }, /* @__PURE__ */ import_react2.default.createElement("div", {
-      className: "container mx-auto p-6 relative text-gray-700"
+      className: "flex flex-row items-center"
+    }, /* @__PURE__ */ import_react2.default.createElement("img", {
+      src: "https://imagehippo.blemmmm.xyz/i/cb341f03866b1c1d92ea31a5b3303bb81071412bdb4cd81b6e7ab52a.png",
+      width: "200",
+      height: "200",
+      alt: "hippodirect"
+    }), /* @__PURE__ */ import_react2.default.createElement("div", {
+      className: "w-full relative text-gray-700 mr-6"
     }, /* @__PURE__ */ import_react2.default.createElement("input", {
-      className: "w-full h-10 pl-8 pr-3 text-base placeholder-gray-600 border rounded focus:outline-none",
+      className: "w-full h-10 pl-8 pr-8 text-base placeholder-gray-600 border rounded focus:outline-none",
       type: "text",
       placeholder: "Search",
       value: query,
-      onChange: (e) => set_query(e.target.value)
+      onChange: (e) => set_query(e.target.value),
+      required: true
     }), /* @__PURE__ */ import_react2.default.createElement("div", {
-      className: "absolute inset-y-0 left-0 flex items-center px-8 pointer-events-none"
+      className: "absolute inset-y-0 left-0 flex items-center px-2"
     }, /* @__PURE__ */ import_react2.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       "aria-hidden": "true",
@@ -20652,8 +20664,22 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }, /* @__PURE__ */ import_react2.default.createElement("path", {
       fill: "#9ca3af",
       d: "M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"
-    })))), /* @__PURE__ */ import_react2.default.createElement("div", {
-      className: "bg-white drop-shadow-lg container mx-auto w-[1230px] absolute top-[65px] left-[68px]"
+    }))), /* @__PURE__ */ import_react2.default.createElement("button", {
+      onClick: search_all,
+      className: "absolute inset-y-0 right-0 flex items-center px-4 bg-indigo-600 rounded-r hover:bg-indigo-500 focus:bg-indigo-700"
+    }, /* @__PURE__ */ import_react2.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      "aria-hidden": "true",
+      role: "img",
+      width: "1em",
+      height: "1em",
+      preserveAspectRatio: "xMidYMid meet",
+      viewBox: "0 0 1664 1664"
+    }, /* @__PURE__ */ import_react2.default.createElement("path", {
+      fill: "#ffffff",
+      d: "M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"
+    }))), /* @__PURE__ */ import_react2.default.createElement("div", {
+      className: "w-full bg-white drop-shadow-lg absolute top-10 left-0"
     }, hits.length > 0 && hits.map((item, index) => /* @__PURE__ */ import_react2.default.createElement("div", {
       key: `products-${index}`,
       className: "flex flex-row px-4 hover:bg-slate-200"
@@ -20668,7 +20694,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onClick: search_all
     }, /* @__PURE__ */ import_react2.default.createElement("h1", {
       className: "mx-auto text-sm text-blue-900"
-    }, /* @__PURE__ */ import_react2.default.createElement("a", null, "see more"))) : null), /* @__PURE__ */ import_react2.default.createElement("div", {
+    }, /* @__PURE__ */ import_react2.default.createElement("a", null, "see more"))) : null))), /* @__PURE__ */ import_react2.default.createElement("div", {
       className: "container mx-auto left-[68px] mb-6"
     }, all_hits.length > 0 ? /* @__PURE__ */ import_react2.default.createElement(search_pagination_default, {
       history,
