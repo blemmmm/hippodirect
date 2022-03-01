@@ -16,9 +16,9 @@ const html = `
       <link href="/dist/postcss/postcss.css" rel="stylesheet">
       <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <title>Typesense Test</title>
-      <meta name="title" content="Add meta content">
-      <meta name="description" content="Add meta desc">
+      <title>HippoDirect | Buy Smartphones & Accessories</title>
+      <meta name="title" content="HippoDirect">
+      <meta name="description" content="eCommerce Search demo using Typesense">
   </head>
   <body>
       <div id="root"></div>
