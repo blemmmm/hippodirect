@@ -20647,7 +20647,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }, /* @__PURE__ */ import_react2.default.createElement("input", {
       className: "w-full h-10 pl-8 pr-8 text-base placeholder-gray-600 border rounded focus:outline-none",
       type: "text",
-      placeholder: "Search",
+      placeholder: "Search by keyword or brand",
       value: query,
       onChange: (e) => set_query(e.target.value),
       required: true

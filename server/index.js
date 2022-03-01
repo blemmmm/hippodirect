@@ -1,22 +1,10 @@
 const fastify = require('fastify').default;
 const fastify_static = require('fastify-static');
+const fastify_favicon = require('fastify-favicon');
 const path = require('path');
-// const fs = require('fs/promises');
 
 
 const app = fastify({ logger: true });
-
-// const Typesense = require('typesense');
-
-// const client = new Typesense.Client({
-//   'nodes': [{
-//     'host': 'localhost', // For Typesense Cloud use xxx.a1.typesense.net
-//     'port': '8108', // For Typesense Cloud use 443
-//     'protocol': 'http', // For Typesense Cloud use https
-//   }],
-//   'apiKey': 'test1234',
-//   'connectionTimeoutSeconds': 2,
-// });
 
 const html = `
   <!DOCTYPE html>
@@ -44,32 +32,14 @@ app.register(fastify_static, {
   prefix: '/dist/',
 });
 
+app.register(fastify_favicon, { path: './', name: 'favicon.ico' });
+
 app.get('/*', async (request, reply) => {
   return reply
     .status(200)
     .header('Content-Type', 'text/html')
     .send(html);
 });
-
-// app.get('/products', async (request, reply) => {
-//   const products = await fs.readFile('./data/ecommerce.json');
-//   return reply
-//     .status(200)
-//     .header('Content-Type', 'application/json')
-//     .send(products);
-// });
-
-// const searchParameters = {
-//   'q': 'samsung',
-//   'query_by': 'name',
-// };
-
-// client.collections('products')
-//   .documents()
-//   .search(searchParameters)
-//   .then(function (searchResults) {
-//     console.log(JSON.stringify(searchResults, null, 2));
-//   });
 
 process.nextTick(async () => {
   try {

@@ -86,7 +86,7 @@ function Search (props) {
       <div className="flex flex-row items-center">
         <img src="https://imagehippo.blemmmm.xyz/i/cb341f03866b1c1d92ea31a5b3303bb81071412bdb4cd81b6e7ab52a.png" width="200" height="200" alt="hippodirect"/>
         <div className="w-full relative text-gray-700 mr-6">
-          <input className="w-full h-10 pl-8 pr-8 text-base placeholder-gray-600 border rounded focus:outline-none" type="text" placeholder="Search" value={query} onChange={(e) => set_query(e.target.value)} required />
+          <input className="w-full h-10 pl-8 pr-8 text-base placeholder-gray-600 border rounded focus:outline-none" type="text" placeholder="Search by keyword or brand" value={query} onChange={(e) => set_query(e.target.value)} required />
           <div className="absolute inset-y-0 left-0 flex items-center px-2">
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1664 1664"><path fill="#9ca3af" d="M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"/></svg>
           </div>
