@@ -20628,7 +20628,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return /* @__PURE__ */ import_react2.default.createElement("div", {
       className: "container mx-auto"
     }, /* @__PURE__ */ import_react2.default.createElement("div", {
-      className: "flex flex-row items-center"
+      className: "flex flex-col md:flex-row items-center pl-6 md:pl-0"
     }, /* @__PURE__ */ import_react2.default.createElement("img", {
       src: "https://imagehippo.blemmmm.xyz/i/cb341f03866b1c1d92ea31a5b3303bb81071412bdb4cd81b6e7ab52a.png",
       width: "200",
@@ -20811,10 +20811,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       found,
       set_all_products
     }) : null, /* @__PURE__ */ import_react4.default.createElement("div", {
-      className: "grid grid-cols-1 md:grid-cols-4 gap-6 px-6"
+      className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 pl-8 pr-16 md:pl-4 md:pr-8 xl:pl-6 xl:pr-10 inline-flex items-center justify-center"
     }, all_products.length > 0 && all_products.map((item, index) => /* @__PURE__ */ import_react4.default.createElement("div", {
       key: `products-${index}`,
-      className: "flex flex-col border border-gray-300 w-[250px] h-[550px] box-content	p-4"
+      className: "flex flex-col border border-gray-300 w-full md:w-11/12 h-[550px] box-content p-4"
     }, /* @__PURE__ */ import_react4.default.createElement("img", {
       src: item.document.image,
       alt: "product-image",

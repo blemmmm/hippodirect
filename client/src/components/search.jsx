@@ -83,7 +83,7 @@ function Search (props) {
   // console.log(all_hits);
   return (
     <div className="container mx-auto">
-      <div className="flex flex-row items-center">
+      <div className="flex flex-col md:flex-row items-center pl-6 md:pl-0">
         <img src="https://imagehippo.blemmmm.xyz/i/cb341f03866b1c1d92ea31a5b3303bb81071412bdb4cd81b6e7ab52a.png" width="200" height="200" alt="hippodirect"/>
         <div className="w-full relative text-gray-700 mr-6">
           <input className="w-full h-10 pl-8 pr-8 text-base placeholder-gray-600 border rounded focus:outline-none" type="text" placeholder="Search by keyword or brand" value={query} onChange={(e) => set_query(e.target.value)} required />
