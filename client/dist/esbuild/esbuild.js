@@ -20695,10 +20695,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       set_all_hits,
       set_query
     }) : null, /* @__PURE__ */ import_react2.default.createElement("div", {
-      className: "grid grid-cols-1 md:grid-cols-4 gap-6 px-6"
+      className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 pl-8 pr-16 md:pl-4 md:pr-8 xl:pl-6 xl:pr-10 inline-flex items-center justify-center"
     }, all_hits.length > 0 && all_hits.map((item, index) => /* @__PURE__ */ import_react2.default.createElement("div", {
       key: `products-${index}`,
-      className: "flex flex-col border border-gray-300 w-[250px] h-[550px] box-content	p-4"
+      className: "flex flex-col border border-gray-300 w-full md:w-11/12 h-[550px] box-content p-4"
     }, /* @__PURE__ */ import_react2.default.createElement("img", {
       src: item.document.image,
       alt: "product-image",
