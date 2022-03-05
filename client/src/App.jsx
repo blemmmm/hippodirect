@@ -3,6 +3,7 @@ import Search from './components/search';
 import Index from './components';
 import useHistory from './useHistory';
 import ScrollToTop from './components/scroll_to_top';
+import Footer from './components/footer';
 
 function App () {
   const history = useHistory();
@@ -57,6 +58,7 @@ function App () {
             <Search history={history} set_all_products={set_all_products}/>
             <Index history={history} all_products={all_products} found={found} set_all_products={set_all_products}/>
             {y_position > 0 ? <ScrollToTop /> : null}
+            <Footer />
           </div>
         );
       } return null;
@@ -67,6 +69,7 @@ function App () {
         <div>
           <Search history={history} />
           {y_position > 0 ? <ScrollToTop /> : null}
+          <Footer />
         </div>
       );
     }

@@ -2460,11 +2460,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React8 = require_react();
+          var React9 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React9.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2496,7 +2496,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React8) {
+          if (!React9) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3712,7 +3712,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React8.Children.forEach(children, function(child) {
+            React9.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3723,7 +3723,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React8.Children.forEach(props.children, function(child) {
+                React9.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -10916,7 +10916,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React8.Component().refs;
+          var emptyRefsObject = new React9.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -20440,11 +20440,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // client/src/esbuild.jsx
-  var import_react7 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
   var import_react_dom = __toESM(require_react_dom());
 
   // client/src/App.jsx
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
 
   // client/src/components/search.jsx
   var import_react2 = __toESM(require_react());
@@ -20892,20 +20892,38 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   var scroll_to_top_default = ScrollToTop;
 
+  // client/src/components/footer.jsx
+  var import_react6 = __toESM(require_react());
+  function Footer() {
+    return /* @__PURE__ */ import_react6.default.createElement("footer", {
+      className: "mt-20"
+    }, /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "bg-indigo-600 h-10 w-full inline-flex justify-center items-center"
+    }, /* @__PURE__ */ import_react6.default.createElement("h1", {
+      className: "text-white"
+    }, "HippoDirect, ", new Date().getFullYear(), ". Public Dataset by ", /* @__PURE__ */ import_react6.default.createElement("a", {
+      className: "hover:underline",
+      href: "https://github.com/algolia/datasets",
+      target: "_blank",
+      rel: "noreferrer"
+    }, "Algolia"), " ")));
+  }
+  var footer_default = Footer;
+
   // client/src/App.jsx
   function App() {
     const history = useHistory_default();
-    const [all_products, set_all_products] = (0, import_react6.useState)([]);
-    const [found, set_found] = (0, import_react6.useState)(0);
-    const [y_position, set_y_position] = (0, import_react6.useState)(0);
-    (0, import_react6.useEffect)(() => {
+    const [all_products, set_all_products] = (0, import_react7.useState)([]);
+    const [found, set_found] = (0, import_react7.useState)(0);
+    const [y_position, set_y_position] = (0, import_react7.useState)(0);
+    (0, import_react7.useEffect)(() => {
       window.addEventListener("scroll", handleScroll, { passive: true });
     }, []);
     const handleScroll = () => {
       const positionY = window.scrollY;
       set_y_position(positionY);
     };
-    (0, import_react6.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       (() => __async(this, null, function* () {
         try {
           if (all_products.length === 0) {
@@ -20936,29 +20954,29 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     switch (history.pathname) {
       case "/": {
         if (all_products.length > 0) {
-          return /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement(search_default, {
+          return /* @__PURE__ */ import_react7.default.createElement("div", null, /* @__PURE__ */ import_react7.default.createElement(search_default, {
             history,
             set_all_products
-          }), /* @__PURE__ */ import_react6.default.createElement(components_default, {
+          }), /* @__PURE__ */ import_react7.default.createElement(components_default, {
             history,
             all_products,
             found,
             set_all_products
-          }), y_position > 0 ? /* @__PURE__ */ import_react6.default.createElement(scroll_to_top_default, null) : null);
+          }), y_position > 0 ? /* @__PURE__ */ import_react7.default.createElement(scroll_to_top_default, null) : null, /* @__PURE__ */ import_react7.default.createElement(footer_default, null));
         }
         return null;
       }
       case "/search": {
-        return /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement(search_default, {
+        return /* @__PURE__ */ import_react7.default.createElement("div", null, /* @__PURE__ */ import_react7.default.createElement(search_default, {
           history
-        }), y_position > 0 ? /* @__PURE__ */ import_react6.default.createElement(scroll_to_top_default, null) : null);
+        }), y_position > 0 ? /* @__PURE__ */ import_react7.default.createElement(scroll_to_top_default, null) : null, /* @__PURE__ */ import_react7.default.createElement(footer_default, null));
       }
     }
   }
   var App_default = App;
 
   // client/src/esbuild.jsx
-  import_react_dom.default.render(/* @__PURE__ */ import_react7.default.createElement(App_default, null), document.getElementById("root"));
+  import_react_dom.default.render(/* @__PURE__ */ import_react8.default.createElement(App_default, null), document.getElementById("root"));
 })();
 /*
 object-assign
