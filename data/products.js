@@ -5,7 +5,7 @@ const client = new Typesense.Client({
   'nodes': [{
     'host': 'hippodirect.blemmmm.xyz', // For Typesense Cloud use xxx.a1.typesense.net
     'port': '8108', // For Typesense Cloud use 443
-    'protocol': 'https', // For Typesense Cloud use https
+    'protocol': 'http', // For Typesense Cloud use https
   }],
   'apiKey': 'test1234',
   'connectionTimeoutSeconds': 2,
