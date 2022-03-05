@@ -20935,7 +20935,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               "x-typesense-api-key": "test1234"
             };
             const query_string = new URLSearchParams(query_data).toString();
-            const response = yield fetch(`https://hippodirect.blemmmm.xyz/collections/products/documents/search?${query_string}`);
+            const response = yield fetch(`https://hippodirect.blemmmm.xyz/collections/products/documents/search?${query_string}`, {
+              method: "GET",
+              credentials: "include"
+            });
             if (response.status === 200) {
               const json = yield response.json();
               if (json instanceof Object) {

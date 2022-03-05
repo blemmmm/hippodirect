@@ -33,7 +33,10 @@ function App () {
             'x-typesense-api-key': 'test1234',
           };
           const query_string = new URLSearchParams(query_data).toString();
-          const response = await fetch(`https://hippodirect.blemmmm.xyz/collections/products/documents/search?${query_string}`);
+          const response = await fetch(`https://hippodirect.blemmmm.xyz/collections/products/documents/search?${query_string}`, {
+            method: 'GET',
+            credentials: 'include',
+          });
           if (response.status === 200) {
             const json = await response.json();
             if (json instanceof Object) {
