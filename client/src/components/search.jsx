@@ -5,7 +5,7 @@ let controller = null;
 
 
 function Search (props) {
-  const { history, set_all_products } = props;
+  const { history } = props;
   const [query, set_query] = useState('');
   const [hits, set_hits] = useState([]);
   const [all_hits, set_all_hits] = useState([]);
@@ -67,7 +67,7 @@ function Search (props) {
       const response = await fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
       if (response.status === 200) {
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         if (json instanceof Object) {
           set_found(json.found);
           if (json.hits instanceof Array) {
@@ -80,7 +80,7 @@ function Search (props) {
     }
 
   };
-  console.log(all_hits);
+  // console.log(all_hits);
   return (
     <div className="container mx-auto">
       <div className="flex flex-row items-center">

@@ -1064,7 +1064,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState5(initialState) {
+          function useState4(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1076,7 +1076,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect5(create, deps) {
+          function useEffect4(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1646,13 +1646,13 @@
           exports.useCallback = useCallback2;
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
-          exports.useEffect = useEffect5;
+          exports.useEffect = useEffect4;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState5;
+          exports.useState = useState4;
           exports.version = ReactVersion;
         })();
       }
@@ -2460,11 +2460,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React7 = require_react();
+          var React8 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2496,7 +2496,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React7) {
+          if (!React8) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3712,7 +3712,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React7.Children.forEach(children, function(child) {
+            React8.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3723,7 +3723,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React7.Children.forEach(props.children, function(child) {
+                React8.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -10916,7 +10916,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React7.Component().refs;
+          var emptyRefsObject = new React8.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -20440,11 +20440,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // client/src/esbuild.jsx
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
   var import_react_dom = __toESM(require_react_dom());
 
   // client/src/App.jsx
-  var import_react5 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
 
   // client/src/components/search.jsx
   var import_react2 = __toESM(require_react());
@@ -20457,11 +20457,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     const quotient = Math.ceil(found / 12);
     const next_page = () => __async(this, null, function* () {
       counter += 1;
-      if (counter <= quotient) {
-        console.log(counter, quotient);
-      } else {
+      if (counter > quotient) {
         counter = 1;
-        console.log(counter, quotient);
       }
       const query_data = {
         q: query,
@@ -20484,11 +20481,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     });
     const prev_page = () => __async(this, null, function* () {
       counter -= 1;
-      if (counter > 0 && counter <= quotient) {
-        console.log(counter, quotient);
-      } else if (counter === 0) {
+      if (counter === 0) {
         counter = quotient;
-        console.log(counter, quotient);
       }
       const query_data = {
         q: query,
@@ -20536,7 +20530,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       className: "flex flex-row justify-end"
     }, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", {
       onClick: prev_page,
-      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l-lg focus:shadow-outline hover:bg-indigo-100"
+      className: "mx-1 h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l focus:shadow-outline bg-indigo-100"
     }, /* @__PURE__ */ import_react.default.createElement("svg", {
       className: "w-4 h-4 fill-current",
       viewBox: "0 0 20 20"
@@ -20546,7 +20540,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fillRule: "evenodd"
     })))), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", {
       onClick: next_page,
-      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-r-lg focus:shadow-outline hover:bg-indigo-100"
+      className: "mx-1 h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-r focus:shadow-outline bg-indigo-100"
     }, /* @__PURE__ */ import_react.default.createElement("svg", {
       className: "w-4 h-4 fill-current",
       viewBox: "0 0 20 20"
@@ -20561,7 +20555,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   // client/src/components/search.jsx
   var controller = null;
   function Search(props) {
-    const { history, set_all_products } = props;
+    const { history } = props;
     const [query, set_query] = (0, import_react2.useState)("");
     const [hits, set_hits] = (0, import_react2.useState)([]);
     const [all_hits, set_all_hits] = (0, import_react2.useState)([]);
@@ -20620,7 +20614,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         const response = yield fetch(`http://localhost:8108/collections/products/documents/search?${query_string}`);
         if (response.status === 200) {
           const json = yield response.json();
-          console.log(json);
           if (json instanceof Object) {
             set_found(json.found);
             if (json.hits instanceof Array) {
@@ -20632,7 +20625,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     });
-    console.log(all_hits);
     return /* @__PURE__ */ import_react2.default.createElement("div", {
       className: "container mx-auto"
     }, /* @__PURE__ */ import_react2.default.createElement("div", {
@@ -20734,11 +20726,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     const quotient = Math.ceil(found / 20);
     const next_page = () => __async(this, null, function* () {
       counter2 += 1;
-      if (counter2 <= quotient) {
-        console.log(counter2, quotient);
-      } else {
+      if (counter2 > quotient) {
         counter2 = 1;
-        console.log(counter2, quotient);
       }
       const query_data = {
         q: "*",
@@ -20762,11 +20751,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     });
     const prev_page = () => __async(this, null, function* () {
       counter2 -= 1;
-      if (counter2 > 0 && counter2 <= quotient) {
-        console.log(counter2, quotient);
-      } else if (counter2 === 0) {
+      if (counter2 === 0) {
         counter2 = quotient;
-        console.log(counter2, quotient);
       }
       const query_data = {
         q: "*",
@@ -20794,7 +20780,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       className: "flex flex-row justify-end"
     }, /* @__PURE__ */ import_react3.default.createElement("li", null, /* @__PURE__ */ import_react3.default.createElement("button", {
       onClick: prev_page,
-      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l-lg focus:shadow-outline hover:bg-indigo-100"
+      className: "mx-1 h-10 px-5 text-indigo-600 transition-colors duration-150 rounded-l focus:shadow-outline bg-indigo-100"
     }, /* @__PURE__ */ import_react3.default.createElement("svg", {
       className: "w-4 h-4 fill-current",
       viewBox: "0 0 20 20"
@@ -20804,7 +20790,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fillRule: "evenodd"
     })))), /* @__PURE__ */ import_react3.default.createElement("li", null, /* @__PURE__ */ import_react3.default.createElement("button", {
       onClick: next_page,
-      className: "h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-r-lg focus:shadow-outline hover:bg-indigo-100"
+      className: "mx-1 h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-r focus:shadow-outline bg-indigo-100"
     }, /* @__PURE__ */ import_react3.default.createElement("svg", {
       className: "w-4 h-4 fill-current",
       viewBox: "0 0 20 20"
@@ -20846,10 +20832,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var components_default = Index;
 
   // client/src/useHistory.js
-  var { useState: useState3, useEffect: useEffect3, useCallback } = require_react();
+  var { useState: useState2, useEffect: useEffect2, useCallback } = require_react();
   var useHistory = () => {
-    const [previous_pathname, set_previous_pathname] = useState3(null);
-    const [pathname, set_pathname] = useState3(window.location.pathname);
+    const [previous_pathname, set_previous_pathname] = useState2(null);
+    const [pathname, set_pathname] = useState2(window.location.pathname);
     const push = useCallback((next_pathname) => {
       if (pathname !== next_pathname) {
         window.history.pushState(null, null, next_pathname);
@@ -20864,7 +20850,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         set_pathname(next_pathname);
       }
     }, [pathname]);
-    useEffect3(() => {
+    useEffect2(() => {
       const popstate_listener = () => {
         set_previous_pathname(pathname);
         set_pathname(window.location.pathname);
@@ -20884,12 +20870,42 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   var useHistory_default = useHistory;
 
+  // client/src/components/scroll_to_top.jsx
+  var import_react5 = __toESM(require_react());
+  function ScrollToTop() {
+    return /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("button", {
+      onClick: () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" }),
+      className: "fixed bottom-0 right-0 m-4 inline-flex items-center justify-center w-14 h-14 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-full focus:shadow-outline hover:bg-indigo-800"
+    }, /* @__PURE__ */ import_react5.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      "aria-hidden": "true",
+      role: "img",
+      width: "2em",
+      height: "2em",
+      preserveAspectRatio: "xMidYMid meet",
+      viewBox: "0 0 16 16"
+    }, /* @__PURE__ */ import_react5.default.createElement("path", {
+      fill: "white",
+      fillRule: "evenodd",
+      d: "M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+    }))));
+  }
+  var scroll_to_top_default = ScrollToTop;
+
   // client/src/App.jsx
   function App() {
     const history = useHistory_default();
-    const [all_products, set_all_products] = (0, import_react5.useState)([]);
-    const [found, set_found] = (0, import_react5.useState)(0);
-    (0, import_react5.useEffect)(() => {
+    const [all_products, set_all_products] = (0, import_react6.useState)([]);
+    const [found, set_found] = (0, import_react6.useState)(0);
+    const [y_position, set_y_position] = (0, import_react6.useState)(0);
+    (0, import_react6.useEffect)(() => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    }, []);
+    const handleScroll = () => {
+      const positionY = window.scrollY;
+      set_y_position(positionY);
+    };
+    (0, import_react6.useEffect)(() => {
       (() => __async(this, null, function* () {
         try {
           if (all_products.length === 0) {
@@ -20917,34 +20933,32 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }))();
     }, [all_products]);
-    console.log(history.pathname);
     switch (history.pathname) {
       case "/": {
         if (all_products.length > 0) {
-          return /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement(search_default, {
+          return /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement(search_default, {
             history,
             set_all_products
-          }), /* @__PURE__ */ import_react5.default.createElement(components_default, {
+          }), /* @__PURE__ */ import_react6.default.createElement(components_default, {
             history,
             all_products,
             found,
             set_all_products
-          }));
+          }), y_position > 0 ? /* @__PURE__ */ import_react6.default.createElement(scroll_to_top_default, null) : null);
         }
         return null;
       }
       case "/search": {
-        return /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement(search_default, {
-          history,
-          set_all_products
-        }));
+        return /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement(search_default, {
+          history
+        }), y_position > 0 ? /* @__PURE__ */ import_react6.default.createElement(scroll_to_top_default, null) : null);
       }
     }
   }
   var App_default = App;
 
   // client/src/esbuild.jsx
-  import_react_dom.default.render(/* @__PURE__ */ import_react6.default.createElement(App_default, null), document.getElementById("root"));
+  import_react_dom.default.render(/* @__PURE__ */ import_react7.default.createElement(App_default, null), document.getElementById("root"));
 })();
 /*
 object-assign

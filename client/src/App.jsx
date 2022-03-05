@@ -2,11 +2,23 @@ import React, { useState, useEffect } from 'react';
 import Search from './components/search';
 import Index from './components';
 import useHistory from './useHistory';
+import ScrollToTop from './components/scroll_to_top';
 
 function App () {
   const history = useHistory();
   const [all_products, set_all_products] = useState([]);
   const [found, set_found] = useState(0);
+  const [y_position, set_y_position] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }, []);
+
+  const handleScroll = () => {
+    const positionY = window.scrollY;
+    set_y_position(positionY);
+  };
+
 
   useEffect(() => {
     (async () => {
@@ -37,8 +49,6 @@ function App () {
     })();
   }, [all_products]);
 
-  console.log(history.pathname);
-
   switch (history.pathname) {
     case '/': {
       if (all_products.length > 0) {
@@ -46,6 +56,7 @@ function App () {
           <div>
             <Search history={history} set_all_products={set_all_products}/>
             <Index history={history} all_products={all_products} found={found} set_all_products={set_all_products}/>
+            {y_position > 0 ? <ScrollToTop /> : null}
           </div>
         );
       } return null;
@@ -54,7 +65,8 @@ function App () {
     case '/search': {
       return (
         <div>
-          <Search history={history} set_all_products={set_all_products}/>
+          <Search history={history} />
+          {y_position > 0 ? <ScrollToTop /> : null}
         </div>
       );
     }

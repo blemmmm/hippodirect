@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Index_Pagination from './index_pagination';
 
 function Index (props) {
   const { all_products, found, set_all_products } = props;
+
 
 
   return (
@@ -21,7 +22,6 @@ function Index (props) {
         ))}
       </div>
     </div>
-
   );
 }
 
