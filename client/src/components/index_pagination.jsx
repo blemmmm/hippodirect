@@ -24,7 +24,7 @@ function Index_Pagination (props) {
     const response = await fetch(`/search/products?${query_string}`);
     if (response.status === 200) {
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
       if (json instanceof Object) {
         if (json.hits instanceof Array) {
           set_all_products(json.hits);
@@ -51,7 +51,7 @@ function Index_Pagination (props) {
     const response = await fetch(`/search/products?${query_string}`);
     if (response.status === 200) {
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
       if (json instanceof Object) {
         if (json.hits instanceof Array) {
           set_all_products(json.hits);

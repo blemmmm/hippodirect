@@ -36,6 +36,12 @@
   "scripts": {
     "dev": "node ./bundler.js",
     "prod": "node ./bundler.js --production",
-    "server": "node ./server/index.js"
+    "server": "node ./server/index.js",
+    "search-server-dev": "./.bin/typesense-server --data-dir=./typesense-data --api-key=test1234 --enable-cors", 
+    "search-server-data": "node ./data/products.js", 
+    "search-server-pm2-start": "pm2 start ./.bin/typesense-server --name=hippodirect-typesense-server -- --data-dir=./typesense-data --api-key=test1234 --enable-cors --api-port=8108 --peering-port=8107", 
+    "search-server-pm2-restart": "pm2 restart hippodirect-typesense-server", 
+    "search-server-pm2-stop": "pm2 stop hippodirect-typesense-server"
   }
+  
 }
