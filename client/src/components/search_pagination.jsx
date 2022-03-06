@@ -20,7 +20,7 @@ function Search_Pagination (props) {
       'x-typesense-api-key': 'test1234',
     };
     const query_string = new URLSearchParams(query_data).toString();
-    const response = await fetch(`/collections/products/documents/search?${query_string}`);
+    const response = await fetch(`/search/products?${query_string}`);
     if (response.status === 200) {
       const json = await response.json();
       console.log(json);
@@ -46,7 +46,7 @@ function Search_Pagination (props) {
       'x-typesense-api-key': 'test1234',
     };
     const query_string = new URLSearchParams(query_data).toString();
-    const response = await fetch(`/collections/products/documents/search?${query_string}`);
+    const response = await fetch(`/search/products?${query_string}`);
     if (response.status === 200) {
       const json = await response.json();
       console.log(json);
