@@ -31,7 +31,7 @@ function Search (props) {
           'x-typesense-api-key': 'test1234',
         };
         const query_string = new URLSearchParams(query_data).toString();
-        const response = await fetch(`https://hippodirect.blemmmm.xyz:8108/collections/products/documents/search?${query_string}`, {
+        const response = await fetch(`/collections/products/documents/search?${query_string}`, {
           signal: controller.signal,
         });
         controller = null;
@@ -64,7 +64,7 @@ function Search (props) {
         'x-typesense-api-key': 'test1234',
       };
       const query_string = new URLSearchParams(query_data).toString();
-      const response = await fetch(`https://hippodirect.blemmmm.xyz:8108/collections/products/documents/search?${query_string}`);
+      const response = await fetch(`/collections/products/documents/search?${query_string}`);
       if (response.status === 200) {
         const json = await response.json();
         // console.log(json);
